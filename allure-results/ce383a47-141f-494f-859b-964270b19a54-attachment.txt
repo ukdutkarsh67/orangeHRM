@@ -1,0 +1,12 @@
+:::::::::::::::::::::::::: 10
+CAN - FMLA
+yes: CAN - Bereavement
+yes: CAN - FMLA
+yes: CAN - Matternity
+yes: CAN - Personal
+yes: CAN - Vacation
+yes: US - Bereavement
+yes: US - FMLA
+yes: US - Matternity
+yes: US - Personal
+yes: US - Vacation
