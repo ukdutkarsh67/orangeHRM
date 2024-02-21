@@ -1,7 +1,5 @@
 # orangeHRM
 
-[7:26 PM] Utkarsh Dwivedi
-# OrangeHRM Testing Readme
  
 ## Prerequisites
  
