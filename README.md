@@ -1,10 +1,11 @@
-# orangeHRM
-
+# OrangeHRM Testing Framework
+ 
+This testing framework is designed to test various functionalities of the OrangeHRM site.
  
 ## Prerequisites
  
-- Ensure that you have access to the OrangeHRM testing environment.
-- Make sure you have valid login credentials.
+- Ensure access to the OrangeHRM testing environment.
+- Valid login credentials are required for testing.
  
 ## Test Flow
  
@@ -12,24 +13,35 @@
     - Open the OrangeHRM login page.
     - Enter valid credentials (username and password).
     - Click on the "Login" button.
-    - Verify that the dashboard is displayed, indicating a successful login.
+    - Verify successful login.
  
 2. **Logout:**
-    - From the dashboard, locate the logout option.
+    - Locate the logout option on the dashboard.
     - Click on the logout option.
-    - Confirm that you are logged out and redirected to the login page.
+    - Confirm successful logout.
  
 3. **Dashboard Navigation:**
-    - After successful login, navigate through different sections of the dashboard.
-    - Test the links/buttons related to Employee Information, PIM, Recruitment, etc.
-    - Ensure that each navigation link leads to the respective section without errors.
+    - Navigate through different sections of the dashboard.
+    - Test links/buttons related to Employee Information, PIM, Recruitment, etc.
+    - Verify navigation without errors.
  
 4. **Timesheet:**
-    - Navigate to the Timesheet section from the dashboard.
-    - Test the functionality to add, edit, and delete timesheets.
-    - Verify that timesheets are accurately recorded and updated.
+    - Navigate to the Timesheet section.
+    - Test adding, editing, and deleting timesheets.
+    - Verify accurate timesheet recording.
  
 5. **Leave Section:**
-    - Go to the Leave section from the dashboard.
-    - Test the process of applying for leave, including selecting dates and leave types.
-    - Verify that leave requests are correctly submitted and reflected in the system.
+    - Go to the Leave section.
+    - Test applying for leave, including date and type selection.
+    - Verify correct leave request submission.
+ 
+## Additional Tips
+ 
+- Clear browser cookies and cache before each test.
+- Document unexpected behavior, errors, or issues encountered.
+- Report bugs or improvements to the development team.
+ 
+## Conclusion
+ 
+This testing framework's README provides guidance for testing key OrangeHRM functionalities. Follow the outlined steps to ensure system reliability and functionality in specified areas.
+has context menu
