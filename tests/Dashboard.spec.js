@@ -21,6 +21,6 @@ test.describe('Dashboard Page',()=>{
     })
     test('click links',async ()=>{
         await dashboard.clickOnPageLink('PIM');
-        //await dashboard.verifyNavPage('PIM');
+        await dashboard.verifyNavPage('PIM');
     })
 })
