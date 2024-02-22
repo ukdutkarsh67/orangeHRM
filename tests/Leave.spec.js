@@ -24,12 +24,13 @@ test.describe('Dashboard Page',()=>{
     })
     test.only('test LeaveList Functionality',async ()=>{
         await dashboard.clickOnPageLink('Leave');
-        await leave.LeaveList();
+        await leave.LeaveList('2024-02-10','2024-02-18','Ab','Abdul','Annual Leave - AL','Administration');
     })
 
     test('test AssignLeave Functionality',async ()=>{
         await dashboard.clickOnPageLink('Leave');
-        await leave.LeaveList();
+        await leave.ClickSubLeavePageLink('Assign Leave');
+        await leave.assignLeaves('Ad','Adarsh','Annual Leave - AL','2024-02-10','2024-02-18','delay');
     })
 
     

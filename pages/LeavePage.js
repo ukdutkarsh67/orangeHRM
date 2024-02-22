@@ -3,6 +3,7 @@ const { log } = require("console");
 exports.LeavePage=class LeavePage{
     constructor(page){
         this.page=page; 
+        this.subleavePageLink=page.locator('[class="oxd-topbar-body-nav-tab-item"]');
         this.fromDate=page.getByPlaceholder('yyyy-dd-mm');
         this.toDate=page.getByPlaceholder('yyyy-dd-mm');
         this.showLeave=page.getByText('Select', { exact: true });
@@ -10,7 +11,6 @@ exports.LeavePage=class LeavePage{
         this.leaveType=page.getByText('-- Select --');
         this.selectLeaveType=page.locator('[class="oxd-select-option"]>span');
         this.subType=page.getByText('-- Select --');
-        //page.locator('div:nth-child(2) > .oxd-input-group > div:nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon');
         this.selectSubType=page.locator('[class*="oxd-select-option"]>span');
         this.empNameTextbox= page.getByPlaceholder('Type for hints...');
         this.empNameSuggestion= page.locator('[class="oxd-autocomplete-option"]>span')
@@ -22,9 +22,18 @@ exports.LeavePage=class LeavePage{
         this.assignButton=page.getByText(' Apply ')
 
     }
-    async LeaveList(){
-        await this.fromDate.first().fill('2024-02-02');
-        await this.toDate.nth(1).fill('2024-03-03');
+    async ClickSubLeavePageLink(subLeavePage){
+        const subPageCount=await this.subleavePageLink.count();
+        for(let i=0;i<subPageCount;i++){
+            if(this.subleavePageLink.nth(i).textContent===subLeavePage){
+                this.subleavePageLink.nth(i).click();
+                break;
+            }
+        }
+    }
+    async LeaveList(fromDate,toDate,nameHint,name,leavetype,subtype){
+        await this.fromDate.first().fill(fromDate);
+        await this.toDate.nth(1).fill(toDate);
         await this.showLeave.click();
         await this.selectStatus.first().click();
         await this.leaveType.first().click();
@@ -33,7 +42,7 @@ exports.LeavePage=class LeavePage{
         for(let i=0;i<selectLeaveTypeCount;++i){
             const element=await this.selectLeaveType.nth(i);
             const text=await element.textContent();
-            if(text==='CAN - FMLA'){
+            if(text===leavetype){
                 await element.click();
                 break;
             }
@@ -47,9 +56,7 @@ exports.LeavePage=class LeavePage{
         for(let i=0;i<selectSubTypeCount;++i){
             const type=await this.selectLeaveType.nth(i);
             const subTypeText=await type.textContent();
-
-            console.log('fuhdfus',subTypeText);
-            if(subTypeText==='Engineering'){
+            if(subTypeText===subtype){
                 await type.click();
                 break;
             }
@@ -57,17 +64,14 @@ exports.LeavePage=class LeavePage{
     }
 
 
-    async assignLeaves(nameHint,name){
+    async assignLeaves(nameHint,name,leavetype,fromDate,toDate,comment){
         await  this.empNameTextbox.fill(nameHint);
         await this.page.waitForTimeout(5000);
         const numberOfSuggestions =await this.empNameSuggestion.count();
  
         for(let i=0; i<numberOfSuggestions; i++){
-            //element at ith Index
             const element = await this.empNameSuggestion.nth(i);
-            //text of ith element
             const elementText = await element.textContent();
-            //click the TargetLink
             if(elementText.includes(name)){
                 await element.click();
                 break;
@@ -84,6 +88,11 @@ exports.LeavePage=class LeavePage{
                 break;
             }
         }
+        await this.fromDateCalendar.fill(fromDate);
+        await this.toDateCalendar.press('Control+a');
+        await this.toDateCalendar.fill(toDate);
+        await this.commentTextbox.fill(comment);
+        await this.assignButton.click();
 
     }
 }
